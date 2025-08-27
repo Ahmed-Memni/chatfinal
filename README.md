@@ -177,6 +177,8 @@ Here is the chart of "clients' birthdays per year".
 <img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/7ef67f7f-67e8-461c-8e5c-bad25005e847" />
 <img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/96429a29-b925-4341-8b34-a1405dc73e4f" />
 <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/0020c3e7-2290-4dfb-a9a1-90e19053ab67" />
+<img width="500" height="353" alt="Screenshot 2025-08-27 110334" src="https://github.com/user-attachments/assets/1c84983f-c654-4491-a46c-ff7fec515707" />
+<img width="451" height="268" alt="image" src="https://github.com/user-attachments/assets/a81dcda7-4f93-4d76-ba94-3a46ae81f55e" />
 
 <img width="859" height="547" alt="image" src="https://github.com/user-attachments/assets/63303838-73d3-4d35-86ce-ef13da7c8df9" />
 
