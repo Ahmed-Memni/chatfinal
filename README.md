@@ -95,7 +95,7 @@ docker compose up --build backend
    ```
 3. After entering the connection string, the chatbot interface will load.
 4. Start chatting with the bot by typing natural language queries related to your database.
-5. For graphs, the bot will generate and display Matplotlib-based charts directly in the chat interface.
+5. For graphs, the bot will generate and display Matplotlib-based charts directly in the chat interface which u can download.
 
 ## Troubleshooting
 
