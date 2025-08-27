@@ -11,6 +11,25 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 - **Backend Integration:** Powered by Python with Supabase connectivity for database operations.
 - **Frontend Interface:** A web-based chat interface built with modern JavaScript frameworks.
 
+## Technologies used 
+### Backend
+- **Python 3.11+** – Core programming language for backend logic.
+- **FastAPI** – Modern web framework for building APIs.
+- **SQLAlchemy & psycopg / pg8000** – Database connection, ORM, and query execution for PostgreSQL.
+- **LangChain** – Orchestration of LLM workflows, SQL query generation, and AI tools.
+- **Pandas & NumPy** – Data manipulation and processing.
+- **Matplotlib & Seaborn** – Data visualization and dynamic graph generation.
+- **OpenAI / Google Generative AI / HuggingFace Transformers** – LLMs for natural language understanding and query generation.
+- **Uvicorn & Starlette** – ASGI server and request handling.
+- **Python utilities** – pydantic (data validation), python-dotenv (environment variables), tenacity (retrying), requests (HTTP requests), functools.lru_cache (caching utilities).
+
+### Frontend
+- **Next.js** – React-based framework for frontend UI and server-side rendering.
+
+### Other Tools
+- **Docker** – Containerization for development and deployment.
+- **OpenRouter** – API key-based interface for LLMs.
+- **Kimi2** – LLM model used in the project.
 ## Installation Running locally 
 
 ```bash
