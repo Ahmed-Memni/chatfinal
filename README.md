@@ -91,7 +91,7 @@ docker compose up --build backend
 2. On startup, the frontend will prompt you to provide your Supabase connection string. i used these 2 to test
    ```bash
    postgresql://postgres.wuexesqrlvgavywvcqwz:eTzesgYI6NMcc0Ky@aws-0-eu-north-1.pooler.supabase.com:5432/postgres
-   postgresql://postgres.mdpxecatdmtjslfzoiqk:Rdw9ltvbSAMaojJd@aws-1-eu-north-1.pooler.supabase.com:6543/postgres?sslmode=requirepostgresql://postgres.mdpxecatdmtjslfzoiqk:Rdw9ltvbSAMaojJd@aws-1-eu-north-1.pooler.supabase.com:6543/postgres?sslmode=require
+   postgresql://postgres.mdpxecatdmtjslfzoiqk:Rdw9ltvbSAMaojJd@aws-1-eu-north-1.pooler.supabase.com:6543/postgres?sslmode=require
    ```
 3. After entering the connection string, the chatbot interface will load.
 4. Start chatting with the bot by typing natural language queries related to your database.
