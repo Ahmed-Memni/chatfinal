@@ -154,15 +154,17 @@ def generate_and_execute_graph(inputs, filepath="graph.png"):
             "data": data,
             "filepath": filepath
         }
-        exec(code, {}, local_vars)
+        exec(code, local_vars)  # Use same dict for globals and locals
+# Detect Plotly usage
+        is_plotly = "go" in local_vars or "plotly" in code
 
-        # 5️⃣ Ensure the figure is saved and closed
-        fig = plt.gcf()
-        fig.savefig(filepath, bbox_inches="tight")
-        plt.close(fig)
-
+        if not is_plotly:
+            # Matplotlib: save figure if it has axes
+            fig = plt.gcf()
+             # only save if figure has something
+            fig.savefig(filepath, bbox_inches="tight")
+            plt.close(fig)
         return {"output": f"Graph saved to {filepath}", "final_answer": True}
-
     except Exception as e:
         return {"output": f"Failed to generate graph: {str(e)}","final_answer": False}
 

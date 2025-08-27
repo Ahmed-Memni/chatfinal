@@ -59,8 +59,18 @@ export default function Home() {
             </div>
 
             <CardTitle className="text-2xl">Welcome to Vermeg Assistant</CardTitle>
+
+            {/* New Welcome Description */}
+            <CardDescription className="mb-4">
+              Vermeg Assistant is an intelligent AI chatbot that interacts with your Supabase database.
+              Ask questions in natural language, and it will translate them into SQL, fetch results,
+              generate graphs using Matplotlib, and even ask clarifying questions when needed.
+              Get started by connecting your database below.
+            </CardDescription>
+
             <CardDescription>Configure your database connection to get started with the chatbot</CardDescription>
           </CardHeader>
+
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="database-url" className="text-sm font-medium text-foreground">

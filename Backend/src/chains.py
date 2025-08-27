@@ -1,7 +1,6 @@
 from functools import lru_cache
 import re
 import psycopg
-from src.GeminiClass import GeminiLLM
 from pydantic import PrivateAttr
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain.schema import BaseOutputParser
@@ -244,6 +243,7 @@ graph_code_template = """Based on the user's question and SQL results, generate 
 Include:
 - Imports (matplotlib.pyplot as plt, pandas as pd)
 - Use the DataFrame called 'data' provided in the sandbox for plotting
+- Use the DataFrame called 'data' exactly as returned by the SQL query
 - Save figure to the variable 'filepath' (always 'chart.png', no plt.show())
 - Dynamically detect numeric columns in 'data' and convert them to float for plotting
 - Fill missing numeric values with 0
@@ -254,6 +254,9 @@ Include:
 - Do NOT include markdown, code fences, or annotations
 - Use the column names exactly as they appear in 'data'
 - Available columns: {columns}
+- IMPORTANT: 
+  * When creating a stackplot with multiple numeric series (columns), unpack each numeric series as a separate argument using '*' to avoid blank graphs. 
+  * When creating a Sankey diagram (multi-node flows), use Plotly Sankey (plotly.graph_objects) instead of matplotlib.sankey to avoid shape mismatches. Do not change this behavior for other chart types.
 
 Question: {question}
 

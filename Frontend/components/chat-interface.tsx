@@ -1,6 +1,5 @@
 "use client"
 
-import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import { Button } from "@/components/ui/button"
@@ -11,7 +10,19 @@ import { Send, ArrowLeft, Download, Loader2 } from "lucide-react"
 import { VermegIcon } from "@/components/vermeg-icon"
 import { SettingsPopover } from "@/components/settings-popover"
 
-// ... your Message and ChatInterfaceProps interfaces here ...
+interface Message {
+  id: string
+  content: string
+  isUser: boolean
+  timestamp: Date
+  hasImage?: boolean
+  imageUrl?: string
+}
+
+interface ChatInterfaceProps {
+  databaseUrl: string
+  onReconfigure: () => void
+}
 
 export function ChatInterface({ databaseUrl, onReconfigure }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([
@@ -27,12 +38,23 @@ export function ChatInterface({ databaseUrl, onReconfigure }: ChatInterfaceProps
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const [currentDatabaseUrl, setCurrentDatabaseUrl] = useState(databaseUrl)
 
+  // Refs to store <img> elements and their client-side blob URLs
+  const imageRefs = useRef<{ [key: string]: HTMLImageElement | null }>({})
+  const imageDataRefs = useRef<{ [key: string]: string | null }>({})
+
+  // Clean up blob URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      Object.values(imageDataRefs.current).forEach((url) => {
+        if (url && url.startsWith("blob:")) URL.revokeObjectURL(url)
+      })
+    }
+  }, [])
+
   const scrollToBottom = () => {
     if (scrollAreaRef.current) {
       const scrollContainer = scrollAreaRef.current.querySelector("[data-radix-scroll-area-viewport]")
-      if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight
-      }
+      if (scrollContainer) scrollContainer.scrollTop = scrollContainer.scrollHeight
     }
   }
 
@@ -65,23 +87,24 @@ export function ChatInterface({ databaseUrl, onReconfigure }: ChatInterfaceProps
       })
 
       if (!response.ok) throw new Error(`Server error: ${response.status}`)
-
       const data = await response.json()
 
       let botMessage: Message
+      const msgId = (Date.now() + 1).toString()
 
       if (data.result?.toLowerCase().includes("here is the chart of")) {
         botMessage = {
-          id: (Date.now() + 1).toString(),
+          id: msgId,
           content: data.result,
           isUser: false,
           timestamp: new Date(),
           hasImage: true,
-          imageUrl: `http://localhost:8000/static/graph.png?timestamp=${Date.now()}&id=${Date.now()}`,
+          // Unique query param prevents caching
+          imageUrl: `http://localhost:8000/static/graph.png?messageId=${msgId}&ts=${Date.now()}`,
         }
       } else {
         botMessage = {
-          id: (Date.now() + 1).toString(),
+          id: msgId,
           content: data.result || "No response from server",
           isUser: false,
           timestamp: new Date(),
@@ -109,38 +132,20 @@ export function ChatInterface({ databaseUrl, onReconfigure }: ChatInterfaceProps
     }
   }
 
-  const downloadImage = async (imageUrl: string) => {
+  const handleImageLoad = async (messageId: string) => {
+    const img = imageRefs.current[messageId]
+    if (!img) return
     try {
-      const image = new Image()
-      image.crossOrigin = "anonymous"
-      image.src = imageUrl
-
-      await new Promise((resolve, reject) => {
-        image.onload = resolve
-        image.onerror = reject
-      })
-
-      const canvas = document.createElement("canvas")
-      canvas.width = image.naturalWidth
-      canvas.height = image.naturalHeight
-      const ctx = canvas.getContext("2d")
-      if (!ctx) return
-
-      ctx.drawImage(image, 0, 0)
-
-      canvas.toBlob((blob) => {
-        if (!blob) return
-        const url = URL.createObjectURL(blob)
-        const link = document.createElement("a")
-        link.href = url
-        link.download = `chart-${Date.now()}.png`
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        URL.revokeObjectURL(url)
-      }, "image/png")
-    } catch (err) {
-      console.error("Download failed", err)
+      const res = await fetch(img.src, { cache: "no-store" })
+      const blob = await res.blob()
+      const blobUrl = URL.createObjectURL(blob)
+      // Revoke previous blob if exists
+      const prevUrl = imageDataRefs.current[messageId]
+      if (prevUrl && prevUrl.startsWith("blob:")) URL.revokeObjectURL(prevUrl)
+      imageDataRefs.current[messageId] = blobUrl
+    } catch {
+      // fallback if fetch fails
+      imageDataRefs.current[messageId] = img.src
     }
   }
 
@@ -169,35 +174,49 @@ export function ChatInterface({ databaseUrl, onReconfigure }: ChatInterfaceProps
               <Card className={`max-w-[80%] ${message.isUser ? "bg-primary text-primary-foreground" : "bg-card"}`}>
                 <div className="p-4">
                   <p className="text-sm whitespace-pre-line">{message.content}</p>
+
                   {message.hasImage && message.imageUrl && (
                     <div className="mt-3 space-y-2">
                       <TransformWrapper>
                         <TransformComponent>
                           <div className="flex justify-center">
                             <img
+                              ref={(el) => (imageRefs.current[message.id] = el)}
                               src={message.imageUrl}
                               alt="Generated chart"
                               className="rounded-md border max-h-[400px] max-w-full object-contain"
+                              onLoad={() => handleImageLoad(message.id)}
                             />
                           </div>
                         </TransformComponent>
                       </TransformWrapper>
+
                       <Button
                         variant="outline"
                         size="sm"
                         className="w-full"
-                        onClick={() => downloadImage(message.imageUrl)}
+                        onClick={() => {
+                          const url = imageDataRefs.current[message.id]
+                          if (!url) return alert("Image not ready yet!")
+
+                          const link = document.createElement("a")
+                          link.href = url
+                          link.download = `chart-${message.id}.png`
+                          link.click()
+                        }}
                       >
                         <Download className="mr-2 h-4 w-4" />
                         Download Chart
                       </Button>
                     </div>
                   )}
+
                   <p className="mt-2 text-xs opacity-70">{message.timestamp.toLocaleTimeString()}</p>
                 </div>
               </Card>
             </div>
           ))}
+
           {isLoading && (
             <div className="flex justify-start">
               <Card className="bg-card">
