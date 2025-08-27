@@ -19,7 +19,6 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 - **LangChain** – Orchestration of LLM workflows, SQL query generation, and AI tools.
 - **Pandas & NumPy** – Data manipulation and processing.
 - **Matplotlib & Seaborn** – Data visualization and dynamic graph generation.
-- **OpenAI / Google Generative AI / HuggingFace Transformers** – LLMs for natural language understanding and query generation.
 - **Uvicorn & Starlette** – ASGI server and request handling.
 - **Python utilities** – pydantic (data validation), python-dotenv (environment variables), tenacity (retrying), requests (HTTP requests), functools.lru_cache (caching utilities).
 
@@ -30,6 +29,8 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 - **Docker** – Containerization for development and deployment.
 - **OpenRouter** – API key-based interface for LLMs.
 - **Kimi2** – LLM model used in the project.
+
+
 ## Installation Running locally 
 
 ```bash
