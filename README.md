@@ -194,7 +194,7 @@ Here is the chart of "clients' birthdays per year".
 ```
 <img width="790" height="490" alt="chart-1756122524747" src="https://github.com/user-attachments/assets/64c4883a-ba0c-4447-8774-662394dce14f" />
 
-**Example of Graphs generated : **
+### Example: Graphs Generated :
 <img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/7ef67f7f-67e8-461c-8e5c-bad25005e847" />
 <img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/96429a29-b925-4341-8b34-a1405dc73e4f" />
 <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/0020c3e7-2290-4dfb-a9a1-90e19053ab67" />
