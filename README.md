@@ -22,7 +22,7 @@ def validate_sql(query: str) -> str:
     if any(word in query.upper() for word in forbidden):
         raise ValueError("Only SELECT queries are allowed")
     return query
-
+```
 ## Technologies used 
 ### Backend
 - **Python 3.11+** – Core programming language for backend logic.
