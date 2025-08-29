@@ -93,9 +93,12 @@ The application should now be running on your localhost (typically at `http://lo
 4. Start chatting with the bot by typing natural language queries related to your database.
 5. For graphs, the bot will generate and display Matplotlib-based charts directly in the chat interface which u can download.
 
-Here’s a clearer version with the step-by-step guide included:
+Here are some examples of the chatbot in action:
+<img width="1917" height="1024" alt="Screenshot 2025-08-29 101332" src="https://github.com/user-attachments/assets/2944042c-3d88-4eed-8c95-5f01bc413361" />
+<img width="1919" height="1035" alt="Screenshot 2025-08-29 101500" src="https://github.com/user-attachments/assets/b9ad8297-bd8f-4e3f-87c6-f4e34da9e8ab" />
+<img width="1919" height="1024" alt="Screenshot 2025-08-29 101750" src="https://github.com/user-attachments/assets/46b80c74-a59e-4b3d-94d0-56fb1762aa53" />
+<img width="1916" height="1018" alt="Screenshot 2025-08-29 102008" src="https://github.com/user-attachments/assets/4a552e14-6e4c-43ce-b6da-7d16bb07f5cb" />
 
----
 
 ## Troubleshooting
 
