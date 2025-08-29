@@ -35,26 +35,6 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 This project can be installed and run in two ways: **using Docker** or **running locally** with your own environment.  
 
 ---
-
-### Running with Docker
-
-If you want to run it in Docker, clone the repository:
-
-```bash
-# Clone the repository
-git clone https://github.com/Ahmed-Memni/chatfinal.git
-```
-
-Then, run these commands in two separate terminals:
-
-```bash
-docker compose up --build frontend
-```
-
-```bash
-docker compose up --build backend
-```
-
 ### Installation Running locally 
 
 ```bash
@@ -84,6 +64,27 @@ npm install
 npm run dev
 ```
 The application should now be running on your localhost (typically at `http://localhost:5173` for the frontend, connecting to the backend at port `8000`).
+
+### Running with Docker
+
+If you want to run it in Docker, clone the repository:
+
+```bash
+# Clone the repository
+git clone https://github.com/Ahmed-Memni/chatfinal.git
+```
+
+Then, run these commands in two separate terminals:
+
+```bash
+docker compose up --build frontend
+```
+
+```bash
+docker compose up --build backend
+```
+
+
 
 ---
 ### Usage
