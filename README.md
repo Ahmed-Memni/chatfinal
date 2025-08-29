@@ -30,6 +30,11 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 - **OpenRouter** – API key-based interface for LLMs.
 - **Kimi2** – LLM model used in the project.
 
+## Installation & Running
+
+This project can be installed and run in two ways: **using Docker** or **running locally** with your own environment.  
+
+---
 
 ### Running with Docker
 
@@ -50,7 +55,7 @@ docker compose up --build frontend
 docker compose up --build backend
 ```
 
-## Installation Running locally 
+### Installation Running locally 
 
 ```bash
 # Clone the repository
@@ -80,7 +85,7 @@ npm run dev
 ```
 The application should now be running on your localhost (typically at `http://localhost:5173` for the frontend, connecting to the backend at port `8000`).
 
-
+---
 ### Usage
 
 1. Open the frontend in your browser.
