@@ -106,7 +106,7 @@ Here’s a clearer version with the step-by-step guide included:
 
 If you encounter the error `[Error] Error: Server error: 500`, it means the API key for OpenRouter is no longer available. You need to get a new one from OpenRouter and update both these variables in the `.env` file: `OPENROUTER_API_KEY` and `OPENAI_API_KEY`.
 
-# How to get a new OpenRouter API key:
+### How to get a new OpenRouter API key:
 
 1. Go to [https://openrouter.ai](https://openrouter.ai).
 2. Log in (or sign up if you don’t already have an account).
