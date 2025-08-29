@@ -36,6 +36,25 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 
 - **Database Flexibility** – At the moment, the project is tested primarily with Supabase (PostgreSQL). Future versions aim to support other database types like MySQL, SQLite, and more.
 
+### Running with Docker
+
+If you want to run it in Docker, clone the repository:
+
+```bash
+# Clone the repository
+git clone https://github.com/Ahmed-Memni/chatfinal.git
+```
+
+Then, run these commands in two separate terminals:
+
+```bash
+docker compose up --build frontend
+```
+
+```bash
+docker compose up --build backend
+```
+
 ## Installation Running locally 
 
 ```bash
@@ -66,24 +85,6 @@ npm run dev
 ```
 The application should now be running on your localhost (typically at `http://localhost:5173` for the frontend, connecting to the backend at port `8000`).
 
-### Running with Docker
-
-If you want to run it in Docker, clone the repository:
-
-```bash
-# Clone the repository
-git clone https://github.com/Ahmed-Memni/chatfinal.git
-```
-
-Then, run these commands in two separate terminals:
-
-```bash
-docker compose up --build frontend
-```
-
-```bash
-docker compose up --build backend
-```
 
 ### Usage
 
@@ -97,9 +98,29 @@ docker compose up --build backend
 4. Start chatting with the bot by typing natural language queries related to your database.
 5. For graphs, the bot will generate and display Matplotlib-based charts directly in the chat interface which u can download.
 
+Here’s a clearer version with the step-by-step guide included:
+
+---
+
 ## Troubleshooting
 
 If you encounter the error `[Error] Error: Server error: 500`, it means the API key for OpenRouter is no longer available. You need to get a new one from OpenRouter and update both these variables in the `.env` file: `OPENROUTER_API_KEY` and `OPENAI_API_KEY`.
+
+# How to get a new OpenRouter API key:
+
+1. Go to [https://openrouter.ai](https://openrouter.ai).
+2. Log in (or sign up if you don’t already have an account).
+3. Once logged in, click on your **profile picture** (top-right corner).
+4. Select **API Keys** from the dropdown menu.
+5. Click **Create Key** and copy the generated API key.
+6. Open your project’s `.env` file.
+7. Replace the old values with your new key:
+
+   ```env
+   OPENROUTER_API_KEY=your_new_key_here
+   OPENAI_API_KEY=your_new_key_here
+   ```
+8. Save the file and restart your server/app.
 
 ## Agent Reasoning (Thought Process)
 
