@@ -11,6 +11,18 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 - **Backend Integration:** Powered by Python with Supabase connectivity for database operations.
 - **Frontend Interface:** A web-based chat interface built with modern JavaScript frameworks.
 
+## Security & Query Validation
+
+To prevent unsafe operations on the database, the chatbot only allows **read-only (`SELECT`) queries**.  
+A validation function checks every generated SQL query and raises an error if it contains destructive commands such as `DROP`, `DELETE`, `UPDATE`, `INSERT`, or `ALTER`.  
+
+```python
+def validate_sql(query: str) -> str:
+    forbidden = ["DROP", "DELETE", "UPDATE", "INSERT", "ALTER"]
+    if any(word in query.upper() for word in forbidden):
+        raise ValueError("Only SELECT queries are allowed")
+    return query
+
 ## Technologies used 
 ### Backend
 - **Python 3.11+** – Core programming language for backend logic.
