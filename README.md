@@ -30,11 +30,6 @@ A conversational AI chatbot that interacts with your Supabase database. It trans
 - **OpenRouter** – API key-based interface for LLMs.
 - **Kimi2** – LLM model used in the project.
 
-## Current Limitations & Future Improvements
-
-- **Single Query Handling** – Currently, the chatbot executes one query at a time and returns a single result per interaction. Supporting multi-step or batch queries is planned for future updates.
-
-- **Database Flexibility** – At the moment, the project is tested primarily with Supabase (PostgreSQL). Future versions aim to support other database types like MySQL, SQLite, and more.
 
 ### Running with Docker
 
@@ -232,5 +227,12 @@ Here is the chart of "clients' birthdays per year".
 **Agent Reasoning example and steps followed with each result :**
 
 <img width="1333" height="799" alt="image" src="https://github.com/user-attachments/assets/41625808-8fbe-4cb4-a2a3-1dffdaa0ffc5" />
+
+
+## Current Limitations & Future Improvements
+
+- **Single Query Handling** – Currently, the chatbot executes one query at a time and returns a single result per interaction. Supporting multi-step or batch queries is planned for future updates.
+
+- **Database Flexibility** – At the moment, the project is tested primarily with Supabase (PostgreSQL). Future versions aim to support other database types like MySQL, SQLite, and more.
 
 
